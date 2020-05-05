@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Linq;
 
 namespace CrmApp
 {
@@ -8,11 +6,28 @@ namespace CrmApp
     {
         static void Main()
         {
-            Ui ui = new Ui();
-            Customer customer = ui.CreateCustomer();
-            Basket basket = ui.CreateBasket();
+            var dbContext = new CrmAppDbContext();
+            //dbContext.Database.EnsureCreated();
 
-            
+            // Insert
+            var customer = new Customer()
+            {
+                Name = "Unknown customer",
+                Sex = 0
+            };
+
+            dbContext.Add(customer);
+            dbContext.SaveChanges();
+
+            // Select
+            var customers = dbContext
+                .Set<Customer>()
+                .Where(cust => cust.CustomerId == 1)
+                .SingleOrDefault();
+
+            // Remove
+            //dbContext.RemoveRange(customers);
+            //dbContext.SaveChanges();
         }
     }
 }
