@@ -19,7 +19,6 @@ namespace CrmApp
                 Address = "Thessaloniki",
                 Email = "agkoutzamanis@athtech.gr",
                 Dob = new DateTime(1992, 4, 8, 3, 15, 0),
-            //Dob = 4 / 8 / 1992,
             };
 
             //connect to the db
@@ -30,7 +29,7 @@ namespace CrmApp
             CustomerManagement custMangr = new CustomerManagement(db);
             Customer customer = custMangr.CreateCustomer(custOpt);
             Console.WriteLine(
-                        $"Id= {customer.Id} Name= {customer.FirstName} Address= {customer.Address} Dob= {customer.Dob}");
+                        $"Id= {customer.Id} Name= {customer.FirstName} Address= {customer.Address} Dob= {customer.Dob.Date.Day + "/"}{customer.Dob.Date.Month + "/"}{customer.Dob.Date.Year}");
 
 
             //testing reading a customer
