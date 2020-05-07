@@ -1,4 +1,5 @@
 ﻿using CrmApp.Models;
+using LanguageExt;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,5 +20,4 @@ namespace CrmApp
         public decimal TotalCost { get { return Price * Quantity; } }
 
     }
-
 }

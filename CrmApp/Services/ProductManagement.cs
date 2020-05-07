@@ -51,6 +51,7 @@ namespace CrmApp.Services
                 product.Price = prodOption.Price;
             if (prodOption.Quantity != 0)
                 product.Quantity = prodOption.Quantity;
+            //total cost is not needed anymore
             // if (prodOption.TotalCost != 0)
             //product.TotalCost = prodOption.TotalCost;
 

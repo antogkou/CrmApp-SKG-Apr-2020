@@ -3,15 +3,17 @@ using CrmApp.Repository;
 using CrmApp.Services;
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 namespace CrmApp
 {
-    class RunProducts
+    public class ProductsCRUD
     {
-        public static void RunDBProducts()
+
+        public static void RunProductsCRUD()
         {
-            //ProductDataInput
+            //Product Manual Data Input
             ProductOption prodOpt = new ProductOption
             {
                 ProductName = "Coca-Cola",
@@ -22,30 +24,42 @@ namespace CrmApp
             //connect to the db
             using CrmDbContext db = new CrmDbContext(); //to using to xrisomopioume anti gia to dispose (disconnect apo vasi)
 
+            //Create Product
+            ProductManagement prodMangr = CreateProduct(prodOpt, db);
 
+            //Read Product
+             ReadProduct(prodMangr);
 
-            //create a product
+            //Update Product
+            UpdateProduct(prodMangr);
+
+            //Delete Product
+            DeleteProduct(prodMangr);
+
+        }
+        private static ProductManagement CreateProduct(ProductOption prodOpt, CrmDbContext db)
+        {
             ProductManagement prodMangr = new ProductManagement(db);
             Product product = prodMangr.CreateProduct(prodOpt);
             Console.WriteLine(
-                       $"ProductName= {product.ProductName} Price= {product.Price} Quantity= {product.Quantity}");
-
-
-
-            //testing reading a product
+                           $"ProductName={product.ProductName} Price={product.Price} Quantity={product.Quantity} TotalCost={product.TotalCost}");
+            return prodMangr;
+        }
+        private static void ReadProduct(ProductManagement prodMangr)
+        {
             Product pr = prodMangr.FindProductById(2);
             if (pr != null)
             {
                 Console.WriteLine(
-                 $"Id= {pr.Id} ProductName= {pr.ProductName} Price= {pr.Price} Quantity = {pr.Quantity}");
+                 $"Id={pr.Id} ProductName={pr.ProductName} Price={pr.Price} Quantity={pr.Quantity} TotalCost={pr.TotalCost}");
             }
             else
             {
                 Console.WriteLine("Not Found");
             }
-
-
-            //testing updating product
+        }
+        private static void UpdateProduct(ProductManagement prodMangr)
+        {
             ProductOption prodChangingPrice = new ProductOption
             {
 
@@ -55,9 +69,9 @@ namespace CrmApp
             Product cP = prodMangr.Update(prodChangingPrice, 1);
             Console.WriteLine(
                               $"Id= {cP.Id} ProductName= {cP.ProductName} Price= {cP.Price} Quantity = {cP.Quantity}");
-
-
-            //testing product deletion
+        }
+        private static void DeleteProduct(ProductManagement prodMangr)
+        {
             bool resultP = prodMangr.DeleteProductById(2);
             Console.WriteLine($"Result = {resultP}");
             Product pd2 = prodMangr.FindProductById(2);
@@ -70,7 +84,8 @@ namespace CrmApp
             {
                 Console.WriteLine("Product Not Found");
             }
-
         }
+
+
     }
 }

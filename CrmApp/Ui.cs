@@ -5,25 +5,21 @@ using System.Text;
 
 namespace CrmApp
 {
-
-
     public class Ui
     {
         public static void Menu()
         {
+            //beautify console
             Console.Title = "CodeHub Learning";
             Console.ForegroundColor = ConsoleColor.Blue;
 
-            List<string> outerCompartment = new List<string>();
-            List<string> mainCompartment = new List<string>();
-
+            //loop menu with while and accept only 1-4
             bool allDone = false;
-
             while (!allDone)
             {
                 Console.WriteLine("\nPlease choose!");
-                Console.WriteLine("[1] Run Customers DB");
-                Console.WriteLine("[2] Run Products DB");
+                Console.WriteLine("[1] Run Customers CRUD");
+                Console.WriteLine("[2] Run Products CRUD");
                 Console.WriteLine("[3] Clear Console");
                 Console.WriteLine("[4] Exit");
                 Console.WriteLine("Please enter your choice: ");
@@ -37,10 +33,10 @@ namespace CrmApp
                 switch (choice)
                 {
                     case 1:
-                        RunCustomers.RunDBCustomers();
+                        CustomersCRUD.RunCustomersCRUD();
                         break;
                     case 2:
-                        RunProducts.RunDBProducts();
+                        ProductsCRUD.RunProductsCRUD();
                         break;
                     case 3:
                         Console.Clear();
@@ -55,52 +51,8 @@ namespace CrmApp
             Console.WriteLine("\nDone!\nPress any key to exit...");
             Console.ReadKey();
         }
-
-        //public int Menu()
-        //{
-        //    Console.WriteLine("1. Run CustomerDB   2. Run ProductDB");
-        //    Console.WriteLine("Give your choice");
-        //    int choice = 0;
-        //    try
-        //    {
-        //        choice = Int32.Parse(Console.ReadLine());
-        //    }
-        //    catch (Exception)
-        //    {
-
-        //    }
-        //    return choice;
-        //}
-
-
-
-        //public void CreateMenu()
-        //{
-        //    do
-        //    {
-        //        int choice = Menu();
-
-        //        switch (choice)
-        //        {
-        //            case 1:
-        //                RunCustomers runCustomers = RunDBCustomers();
-        //                break;
-        //            case 2:
-        //                RunProducts runProducts = RunDBProducts();
-        //                break;
-        //            case 0:
-        //                Console.WriteLine("You selected to exit");
-        //                break;
-
-        //        }
-        //    }
-        //    while (choice != 0);
-        //    return Menu;
-        //}
-
     }
-
-    }
+ }
 
 
 
