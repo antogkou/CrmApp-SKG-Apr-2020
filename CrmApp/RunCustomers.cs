@@ -18,7 +18,8 @@ namespace CrmApp
                 LastName = "Gkoutzamanmis",
                 Address = "Thessaloniki",
                 Email = "agkoutzamanis@athtech.gr",
-
+                Dob = new DateTime(1992, 4, 8, 3, 15, 0),
+            //Dob = 4 / 8 / 1992,
             };
 
             //connect to the db
@@ -29,7 +30,7 @@ namespace CrmApp
             CustomerManagement custMangr = new CustomerManagement(db);
             Customer customer = custMangr.CreateCustomer(custOpt);
             Console.WriteLine(
-                        $"Id= {customer.Id} Name= {customer.FirstName} Address= {customer.Address}");
+                        $"Id= {customer.Id} Name= {customer.FirstName} Address= {customer.Address} Dob= {customer.Dob}");
 
 
             //testing reading a customer
@@ -37,7 +38,7 @@ namespace CrmApp
             if (cx != null)
             {
                 Console.WriteLine(
-                 $"Id= {cx.Id} Name= {cx.FirstName} Address= {cx.Address}");
+                 $"Id= {cx.Id} Name= {cx.FirstName} Address= {cx.Address} Dob= {cx.Dob}");
             }
             else
             {

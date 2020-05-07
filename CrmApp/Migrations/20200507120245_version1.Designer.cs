@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CrmApp.Migrations
 {
     [DbContext(typeof(CrmDbContext))]
-    [Migration("20200505194351_antonis2")]
-    partial class antonis2
+    [Migration("20200507120245_version1")]
+    partial class version1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
