@@ -10,9 +10,11 @@ namespace CrmApp
     class MainProgram
     {
         static void Main()
-        { 
-            RunCustomers.RunDBCustomers();  //Use the customer's class function
-            RunProducts.RunDBProducts(); //Use the product's class function
+        {
+            //Call UI MENU
+            Ui.Menu();
+           // RunCustomers.RunDBCustomers();  //Use the customer's class function
+           // RunProducts.RunDBProducts(); //Use the product's class function
         }
     }
 }
