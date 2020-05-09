@@ -1,11 +1,9 @@
 ﻿using CrmApp.Models;
 using CrmApp.Options;
 using CrmApp.Repository;
-using System;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 
 namespace CrmApp.Services
 {

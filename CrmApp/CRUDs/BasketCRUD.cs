@@ -8,7 +8,7 @@ using System.Text;
 
 namespace CrmApp
 {
-    class BasketCRUD {
+    public class BasketCRUD {
         public static void RunBasketCRUD()
         {
             //connect to the DB
