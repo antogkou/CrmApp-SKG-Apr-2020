@@ -50,7 +50,7 @@ namespace CrmApp
 
             //testing deletion
 
-            bool result = custMangr.DeleteCustomerById(2);
+            bool result = custMangr.HardDeleteCustomerById(2);
             Console.WriteLine($"Result = {result}");
             customer = custMangr.FindCustomerById(2);
             if (customer != null)

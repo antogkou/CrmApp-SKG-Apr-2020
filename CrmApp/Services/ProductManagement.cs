@@ -1,5 +1,7 @@
 ﻿using CrmApp.Options;
 using CrmApp.Repository;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CrmApp.Services
 {
@@ -52,7 +54,7 @@ namespace CrmApp.Services
             return product;
         }
 
-        public bool DeleteProductById(int id)
+        public bool HardDeleteProductById(int id)
         {
 
             Product product = db.Products.Find(id);
@@ -63,6 +65,12 @@ namespace CrmApp.Services
                 return true;
             }
             return false;
+        }
+
+        public List<Product> GetAllProducts()
+        {
+            return db.Products
+                .ToList();
         }
 
 

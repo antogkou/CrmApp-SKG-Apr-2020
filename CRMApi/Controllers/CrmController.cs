@@ -12,14 +12,11 @@ using Microsoft.Extensions.Logging;
 namespace CRMApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    //controller=crm apo launchSettings
+    [Route("[controller]/customer")]
+
     public class CrmController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
         private readonly ILogger<CrmController> _logger;
 
         public CrmController(ILogger<CrmController> logger)
@@ -31,56 +28,76 @@ namespace CRMApi.Controllers
         [HttpGet]
         public string Get()
         {
-            //var rng = new Random();
-            //return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            //{
-            //    Date = DateTime.Now.AddDays(index),
-            //    TemperatureC = rng.Next(-20, 55),
-            //    Summary = Summaries[rng.Next(Summaries.Length)]
-            //})
-            //.ToArray();
-            return "Welcome to our site";
+
+            return "Welcome to our customers";
         }
 
-        // crm/datenow
-        [HttpGet("datenow")]
-        public DateTime getInfo()
+        //GET ALL CUSTOMERS
+        [HttpGet("all")]
+        public List<Customer> GetAllCustomers()
         {
-            return DateTime.Now;
+            using CrmDbContext db = new CrmDbContext();
+            CustomerManagement custMangr = new CustomerManagement(db);
+            return custMangr.GetAllCustomers();
+                //db.Customers.ToList();
         }
-        [HttpGet("customer/{id}")]
-        public Customer getCustomer(int id)
+
+        //GET CUSTOMER BY /ID
+        [HttpGet("{id}")]
+        public Customer GetCustomer(int id)
         {
             using CrmDbContext db = new CrmDbContext();
             CustomerManagement custMangr = new CustomerManagement(db);
             return custMangr.FindCustomerById(id);
         }
 
-        [HttpGet("product/{id}")]
-        public Product getProduct(int id)
+        //POST CUSTOMER (new)
+        [HttpPost("")]
+        public Customer PostCustomer(CustomerOption custOpt)
         {
             using CrmDbContext db = new CrmDbContext();
-            ProductManagement prodMangr = new ProductManagement(db);
-            return prodMangr.FindProductById(id);
+            CustomerManagement custMangr = new CustomerManagement(db);
+            return custMangr.CreateCustomer(custOpt);
+
         }
 
-        [HttpGet("basket/{id}")]
-        public Basket getBasket(int id)
+        //PUT CUSTOMER (update entries)
+        [HttpPut("{id}")]
+        public Customer PutCustomer(int id, CustomerOption custOpt)
         {
             using CrmDbContext db = new CrmDbContext();
-            BasketManagement baskMangr = new BasketManagement(db);
-            return baskMangr.FindBasketById(id);
+            CustomerManagement custMangr = new CustomerManagement(db);
+            return custMangr.Update(custOpt, id);
         }
 
-        //uri/head/body
-        [HttpPost("product")]
-        public Product PostProduct(ProductOption prOpt)
+        //DELETE Customer
+        [HttpDelete("hard/{id}")]
+        public bool HardDeleteCustomer(int id)
         {
             using CrmDbContext db = new CrmDbContext();
-            ProductManagement prodMangr = new ProductManagement(db);
-            return prodMangr.CreateProduct(prOpt);
-           
+            CustomerManagement custMangr = new CustomerManagement(db);
+            return custMangr.HardDeleteCustomerById(id);
         }
 
+        //PUT isActive=0
+        [HttpPut("disable/{id}")]
+        public bool DisableCustomerById(int id)
+        {
+            using CrmDbContext db = new CrmDbContext();
+            CustomerManagement custMangr = new CustomerManagement(db);
+            return custMangr.DisableCustomerById(id);
+        }
+
+        //PUT isActive=1
+        [HttpPut("enable/{id}")]
+        public bool EnableCustomerById(int id)
+        {
+            using CrmDbContext db = new CrmDbContext();
+            CustomerManagement custMangr = new CustomerManagement(db);
+            return custMangr.EnableCustomerById(id);
+        }
+
+        //-----------------------------------------------------------------//
+        
     }
 }

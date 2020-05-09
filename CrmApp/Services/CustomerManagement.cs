@@ -53,6 +53,12 @@ namespace CrmApp.Services
 
         }
 
+        public List<Customer> GetAllCustomers()
+        {
+            return db.Customers
+                .ToList();
+        }
+
         public Customer Update(CustomerOption custOption, int customerId)
         {
 
@@ -71,9 +77,9 @@ namespace CrmApp.Services
             return customer;
         }
 
-        public bool DeleteCustomerById(int id)
+        public bool HardDeleteCustomerById(int id)
         {
-            
+
             Customer customer = db.Customers.Find(id);
             if (customer != null)
             {
@@ -84,6 +90,33 @@ namespace CrmApp.Services
             return false;
         }
 
-       
+        //isActive=0
+        public bool EnableCustomerById(int id)
+        {
+
+            Customer customer = db.Customers.Find(id);
+            if (customer != null)
+            {
+                customer.IsActive = true;
+                db.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
+        //isActive=1
+        public bool DisableCustomerById(int id)
+        {
+
+            Customer customer = db.Customers.Find(id);
+            if (customer != null)
+            {
+                customer.IsActive = false;
+                db.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
     }
 }

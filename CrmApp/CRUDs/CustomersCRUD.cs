@@ -54,7 +54,7 @@ namespace CrmApp
                              $"Id= {c2.Id} Name= {c2.FirstName} Address= {c2.Address}");
 
             //Delete Customer
-            bool result = custMangr.DeleteCustomerById(2);
+            bool result = custMangr.HardDeleteCustomerById(2);
             Console.WriteLine($"Result = {result}");
             customer = custMangr.FindCustomerById(2);
             if (customer != null)

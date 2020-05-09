@@ -67,7 +67,7 @@ namespace CrmApp
         }
         private static void DeleteProduct(ProductManagement prodMangr)
         {
-            bool resultP = prodMangr.DeleteProductById(2);
+            bool resultP = prodMangr.HardDeleteProductById(2);
             Console.WriteLine($"Result = {resultP}");
             Product pd2 = prodMangr.FindProductById(2);
             if (pd2 != null)

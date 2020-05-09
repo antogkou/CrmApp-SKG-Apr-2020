@@ -41,8 +41,13 @@ namespace CRMApi
 
             app.UseEndpoints(endpoints =>
             {
+                //endpoints.MapControllerRoute(name: "Customers",
+                //    pattern: "customer/{all}",
+                //    defaults: new { controller = "Customers", action = "Customers" });
+                //endpoints.MapControllerRoute(name: "default",
+                //            pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllers();
             });
         }
-    }
+}
 }
