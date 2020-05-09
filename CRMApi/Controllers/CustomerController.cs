@@ -13,13 +13,13 @@ namespace CRMApi.Controllers
 {
     [ApiController]
     //controller=crm apo launchSettings
-    [Route("[controller]/customer")]
+    [Route("[controller]")]
 
-    public class CrmController : ControllerBase
+    public class CustomerController : ControllerBase
     {
-        private readonly ILogger<CrmController> _logger;
+        private readonly ILogger<CustomerController> _logger;
 
-        public CrmController(ILogger<CrmController> logger)
+        public CustomerController(ILogger<CustomerController> logger)
         {
             _logger = logger;
         }

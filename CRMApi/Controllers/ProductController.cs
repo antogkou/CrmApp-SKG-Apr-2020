@@ -12,9 +12,8 @@ using Microsoft.Extensions.Logging;
 
 namespace CRMApi.Controllers
 {
-    
     [ApiController]
-    [Route("crm/product")]
+    [Route("[controller]")]
     public class ProductController : ControllerBase
     {
 
