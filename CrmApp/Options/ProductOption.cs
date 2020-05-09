@@ -10,6 +10,5 @@ namespace CrmApp.Options
         public decimal Price { get; set; }
         public int Quantity { get; set; }
 
-        public decimal TotalCost { get { return Price * Quantity; } }
     }
 }

@@ -14,7 +14,7 @@ namespace CrmApp
         public decimal Price { get; set; }
         public int Quantity { get; set; }
 
-        public List<BasketProducts> BasketProducts { get; set; }
+        public List<BasketProduct> BasketProducts { get; set; }
 
         //calculated property
         public decimal TotalCost { get { return Price * Quantity; } }

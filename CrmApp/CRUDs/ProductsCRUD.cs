@@ -2,9 +2,6 @@
 using CrmApp.Repository;
 using CrmApp.Services;
 using System;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 
 namespace CrmApp
 {
@@ -27,14 +24,12 @@ namespace CrmApp
             //Create Product
             ProductManagement prodMangr = CreateProduct(prodOpt, db);
 
-            //Read Product
-             ReadProduct(prodMangr);
+            
+            ReadProduct(prodMangr); //Read Product
 
-            //Update Product
-            UpdateProduct(prodMangr);
+            UpdateProduct(prodMangr); //Update Product
 
-            //Delete Product
-            DeleteProduct(prodMangr);
+            DeleteProduct(prodMangr); //Delete Product
 
         }
         private static ProductManagement CreateProduct(ProductOption prodOpt, CrmDbContext db)
@@ -85,7 +80,6 @@ namespace CrmApp
                 Console.WriteLine("Product Not Found");
             }
         }
-
 
     }
 }

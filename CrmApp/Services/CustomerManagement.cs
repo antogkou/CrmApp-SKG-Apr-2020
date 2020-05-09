@@ -1,15 +1,14 @@
 ﻿using CrmApp.Options;
 using CrmApp.Repository;
-using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace CrmApp.Services
 {
     public class CustomerManagement
     {
         
-        private CrmDbContext db = new CrmDbContext();
+        private CrmDbContext db;
         //DB Injection gia na mi to vazoume pantou
         public CustomerManagement(CrmDbContext _db)
         {
@@ -31,8 +30,8 @@ namespace CrmApp.Services
                 Balance = 0,
             };
 
-          
-            db.Database.EnsureCreated();
+           //if db doesnt exist, create it
+            //db.Database.EnsureCreated();
 
             db.Customers.Add(customer);
             db.SaveChanges();
@@ -40,18 +39,26 @@ namespace CrmApp.Services
             return customer;
         }
 
-        public Customer FindCustomerById(int id)
+        public Customer FindCustomerById(int customerId)
         {
-            Customer customer = db.Customers.Find(id);
-            return customer;
+            return db.Customers.Find(customerId); ;
+        }
+
+        public List<Customer> FindCustomerByName(CustomerOption custOption)
+        {
+            return db.Customers
+                .Where(cust => cust.LastName == custOption.LastName)// && cust.FirstName == custOption.FirstName
+                .Where(cust => cust.FirstName == custOption.FirstName)
+                .ToList();
+
         }
 
         public Customer Update(CustomerOption custOption, int customerId)
         {
-            
+
             Customer customer = db.Customers.Find(customerId);
 
-            if (custOption.FirstName!=null)
+            if (custOption.FirstName != null)
                 customer.FirstName = custOption.FirstName;
             if (custOption.LastName != null)
                 customer.LastName = custOption.LastName;
@@ -76,5 +83,7 @@ namespace CrmApp.Services
             }
             return false;
         }
+
+       
     }
 }

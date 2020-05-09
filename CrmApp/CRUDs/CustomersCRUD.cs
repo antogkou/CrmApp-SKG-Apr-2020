@@ -2,8 +2,6 @@
 using CrmApp.Repository;
 using CrmApp.Services;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CrmApp
 {
@@ -21,7 +19,7 @@ namespace CrmApp
                 Dob = new DateTime(1992, 8, 4, 6, 00, 0),
             };
 
-            //connect to the db
+            //connect to the DB
             using CrmDbContext db = new CrmDbContext();
             //to using to xrisomopioume anti gia to dispose (disconnect apo vasi)
 
@@ -32,7 +30,7 @@ namespace CrmApp
                         $"Id= {customer.Id} Name={customer.FirstName} Address={customer.Address} Dob={customer.Dob.Date.Day + "/"}{customer.Dob.Date.Month + "/"}{customer.Dob.Date.Year}");
 
 
-            //testing reading a customer
+            //Read Customer
             Customer cx = custMangr.FindCustomerById(2);
             if (cx != null)
             {
@@ -41,10 +39,10 @@ namespace CrmApp
             }
             else
             {
-                Console.WriteLine("Not Found");
+                Console.WriteLine("Customer Not Found");
             }
 
-            //testing updating customer
+            //Update Customer
             CustomerOption custChangingAddress = new CustomerOption
             {
 
@@ -55,14 +53,14 @@ namespace CrmApp
             Console.WriteLine(
                              $"Id= {c2.Id} Name= {c2.FirstName} Address= {c2.Address}");
 
-            //testing customer deletion 
+            //Delete Customer
             bool result = custMangr.DeleteCustomerById(2);
             Console.WriteLine($"Result = {result}");
-            Customer cx2 = custMangr.FindCustomerById(2);
-            if (cx2 != null)
+            customer = custMangr.FindCustomerById(2);
+            if (customer != null)
             {
                 Console.WriteLine(
-                $"Id= {c2.Id} Name= {c2.FirstName} Address= {c2.Address}");
+                $"Id= {customer.Id} Name= {customer.FirstName} Address= {customer.Address}");
             }
             else
             {

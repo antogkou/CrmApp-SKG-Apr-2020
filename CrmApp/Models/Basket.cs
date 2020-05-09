@@ -10,7 +10,7 @@ namespace CrmApp
     {
         public int Id { get; set; }
         public Customer Customer { get; set; }
-        public List<BasketProducts> BasketProducts { get; set; }
+        public List<BasketProduct> BasketProducts { get; set; }
 
 
     }

@@ -33,7 +33,7 @@ namespace CrmApp.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Basket");
+                    b.ToTable("Baskets");
                 });
 
             modelBuilder.Entity("CrmApp.Customer", b =>
@@ -69,7 +69,7 @@ namespace CrmApp.Migrations
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("CrmApp.Models.BasketProducts", b =>
+            modelBuilder.Entity("CrmApp.Models.BasketProduct", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -119,7 +119,7 @@ namespace CrmApp.Migrations
                         .HasForeignKey("CustomerId");
                 });
 
-            modelBuilder.Entity("CrmApp.Models.BasketProducts", b =>
+            modelBuilder.Entity("CrmApp.Models.BasketProduct", b =>
                 {
                     b.HasOne("CrmApp.Basket", "Basket")
                         .WithMany("BasketProducts")

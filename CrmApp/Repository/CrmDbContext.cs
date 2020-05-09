@@ -10,8 +10,8 @@ namespace CrmApp.Repository
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<Customer> Customers { get; set; }
-        public DbSet<Basket> Basket { get; set; }
-        public DbSet<BasketProducts> BasketProducts { get; set; }
+        public DbSet<Basket> Baskets { get; set; }
+        public DbSet<BasketProduct> BasketProducts { get; set; }
 
         private readonly string connectionString =
              "Server=localhost; " +
@@ -26,6 +26,5 @@ namespace CrmApp.Repository
 
         }
 
-
     }
- }
+}

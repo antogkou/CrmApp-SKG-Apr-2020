@@ -1,8 +1,5 @@
 ﻿using CrmApp.Options;
 using CrmApp.Repository;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CrmApp.Services
 {
@@ -33,7 +30,6 @@ namespace CrmApp.Services
             return product;
         }
 
-
         public Product FindProductById(int id)
         {
             Product product = db.Products.Find(id);
@@ -51,9 +47,6 @@ namespace CrmApp.Services
                 product.Price = prodOption.Price;
             if (prodOption.Quantity != 0)
                 product.Quantity = prodOption.Quantity;
-            //total cost is not needed anymore
-            // if (prodOption.TotalCost != 0)
-            //product.TotalCost = prodOption.TotalCost;
 
             db.SaveChanges();
             return product;

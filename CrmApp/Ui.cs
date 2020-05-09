@@ -13,21 +13,22 @@ namespace CrmApp
             Console.Title = "CodeHub Learning";
             Console.ForegroundColor = ConsoleColor.Blue;
 
-            //loop menu with while and accept only 1-4
+            //loop menu with while and accept only 1-5
             bool allDone = false;
             while (!allDone)
             {
                 Console.WriteLine("\nPlease choose!");
                 Console.WriteLine("[1] Run Customers CRUD");
                 Console.WriteLine("[2] Run Products CRUD");
-                Console.WriteLine("[3] Clear Console");
-                Console.WriteLine("[4] Exit");
+                Console.WriteLine("[3] Run Basket CRUD");
+                Console.WriteLine("[4] TEST CRUD");
+                Console.WriteLine("[5] Exit");
                 Console.WriteLine("Please enter your choice: ");
 
                 int choice;
-                while (!int.TryParse(Console.ReadLine(), out choice) || choice < 1 || choice > 4)
+                while (!int.TryParse(Console.ReadLine(), out choice) || choice < 1 || choice > 5)
                 {
-                    Console.WriteLine("Invalid input. Enter a number from 1 to 4: ");
+                    Console.WriteLine("Invalid input. Enter a number from 1 to 5: ");
                 }
 
                 switch (choice)
@@ -39,9 +40,13 @@ namespace CrmApp
                         ProductsCRUD.RunProductsCRUD();
                         break;
                     case 3:
-                        Console.Clear();
+                        BasketCRUD.RunBasketCRUD();
                         break;
                     case 4:
+                        testCRUD.RunTestCRUD();
+                        //Console.Clear();
+                        break;
+                    case 5:
                         Console.WriteLine("All done. Have a great day!");
                         allDone = true;
                         break;
@@ -52,7 +57,7 @@ namespace CrmApp
             Console.ReadKey();
         }
     }
- }
+}
 
 
 

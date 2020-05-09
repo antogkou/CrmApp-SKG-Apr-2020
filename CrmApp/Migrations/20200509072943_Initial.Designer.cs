@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CrmApp.Migrations
 {
     [DbContext(typeof(CrmDbContext))]
-    [Migration("20200507120245_version1")]
-    partial class version1
+    [Migration("20200509072943_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,7 +35,7 @@ namespace CrmApp.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Basket");
+                    b.ToTable("Baskets");
                 });
 
             modelBuilder.Entity("CrmApp.Customer", b =>
@@ -71,7 +71,7 @@ namespace CrmApp.Migrations
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("CrmApp.Models.BasketProducts", b =>
+            modelBuilder.Entity("CrmApp.Models.BasketProduct", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -121,7 +121,7 @@ namespace CrmApp.Migrations
                         .HasForeignKey("CustomerId");
                 });
 
-            modelBuilder.Entity("CrmApp.Models.BasketProducts", b =>
+            modelBuilder.Entity("CrmApp.Models.BasketProduct", b =>
                 {
                     b.HasOne("CrmApp.Basket", "Basket")
                         .WithMany("BasketProducts")
