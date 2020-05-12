@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrmApp", "CrmApp\CrmApp.csproj", "{7BD3AFC5-262B-4AEA-90FB-7F629A22B7E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRMApi", "CRMApi\CRMApi.csproj", "{F912AED8-A6B7-4CB2-9344-0F08AFD2ABA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CRMApi", "CRMApi\CRMApi.csproj", "{F912AED8-A6B7-4CB2-9344-0F08AFD2ABA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrmMVC", "CrmMVC\CrmMVC.csproj", "{E299866E-E018-4615-8C8A-BDDD50512091}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{F912AED8-A6B7-4CB2-9344-0F08AFD2ABA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F912AED8-A6B7-4CB2-9344-0F08AFD2ABA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F912AED8-A6B7-4CB2-9344-0F08AFD2ABA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E299866E-E018-4615-8C8A-BDDD50512091}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E299866E-E018-4615-8C8A-BDDD50512091}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E299866E-E018-4615-8C8A-BDDD50512091}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E299866E-E018-4615-8C8A-BDDD50512091}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

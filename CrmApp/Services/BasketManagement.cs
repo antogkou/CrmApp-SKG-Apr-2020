@@ -1,7 +1,6 @@
 ﻿using CrmApp.Models;
 using CrmApp.Options;
 using CrmApp.Repository;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -39,10 +38,9 @@ namespace CrmApp.Services
             {
                 Basket = db.Baskets.Find(bskProd.BasketId),
                 Product = db.Products.Find(bskProd.ProductId)
-
             };
 
-            db.Database.EnsureCreated();
+            //db.Database.EnsureCreated();
             db.BasketProducts.Add(basketProduct);
             db.SaveChanges();
             return basketProduct;
@@ -77,8 +75,6 @@ namespace CrmApp.Services
             return false;
         }
 
-        //
         
-
     }
 }

@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace CrmApp.Services
 {
-    public class ProductManagement
+    public class ProductManagement : IProductManager
     {
         private CrmDbContext db = new CrmDbContext();
         //DB Injection gia na mi to vazoume pantou
@@ -73,6 +73,24 @@ namespace CrmApp.Services
                 .ToList();
         }
 
+        public Product GetProduct(int id)
+        {
+            throw new System.NotImplementedException();
+        }
 
+        public Product PostProduct(ProductOption prodOpt)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Product PutProduct(int id, ProductOption custOpt)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public bool HardDeleteProduct(int id)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

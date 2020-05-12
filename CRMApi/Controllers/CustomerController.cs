@@ -12,23 +12,29 @@ using Microsoft.Extensions.Logging;
 namespace CRMApi.Controllers
 {
     [ApiController]
-    //controller=crm apo launchSettings
+    //controller=Customer apo to CustomerController
     [Route("[controller]")]
 
     public class CustomerController : ControllerBase
     {
-        private readonly ILogger<CustomerController> _logger;
 
-        public CustomerController(ILogger<CustomerController> logger)
+        //injection
+        private CrmDbContext db = new CrmDbContext();
+      
+
+        private readonly ILogger<CustomerController> _logger;
+        private readonly ICustomerManager custMangr;
+
+        public CustomerController(ILogger<CustomerController> logger, ICustomerManager _custMangr)
         {
             _logger = logger;
+            custMangr = _custMangr;
         }
 
         //starting endpoint
         [HttpGet]
         public string Get()
         {
-
             return "Welcome to our customers";
         }
 
@@ -36,8 +42,6 @@ namespace CRMApi.Controllers
         [HttpGet("all")]
         public List<Customer> GetAllCustomers()
         {
-            using CrmDbContext db = new CrmDbContext();
-            CustomerManagement custMangr = new CustomerManagement(db);
             return custMangr.GetAllCustomers();
                 //db.Customers.ToList();
         }
@@ -46,27 +50,21 @@ namespace CRMApi.Controllers
         [HttpGet("{id}")]
         public Customer GetCustomer(int id)
         {
-            using CrmDbContext db = new CrmDbContext();
-            CustomerManagement custMangr = new CustomerManagement(db);
+           
             return custMangr.FindCustomerById(id);
         }
 
         //POST CUSTOMER (new)
         [HttpPost("")]
-        public Customer PostCustomer(CustomerOption custOpt)
+        public Customer PostCustomer([FromForm] CustomerOption custOpt)
         {
-            using CrmDbContext db = new CrmDbContext();
-            CustomerManagement custMangr = new CustomerManagement(db);
             return custMangr.CreateCustomer(custOpt);
-
         }
 
         //PUT CUSTOMER (update entries)
         [HttpPut("{id}")]
         public Customer PutCustomer(int id, CustomerOption custOpt)
         {
-            using CrmDbContext db = new CrmDbContext();
-            CustomerManagement custMangr = new CustomerManagement(db);
             return custMangr.Update(custOpt, id);
         }
 
@@ -74,8 +72,6 @@ namespace CRMApi.Controllers
         [HttpDelete("hard/{id}")]
         public bool HardDeleteCustomer(int id)
         {
-            using CrmDbContext db = new CrmDbContext();
-            CustomerManagement custMangr = new CustomerManagement(db);
             return custMangr.HardDeleteCustomerById(id);
         }
 
@@ -83,8 +79,6 @@ namespace CRMApi.Controllers
         [HttpPut("disable/{id}")]
         public bool DisableCustomerById(int id)
         {
-            using CrmDbContext db = new CrmDbContext();
-            CustomerManagement custMangr = new CustomerManagement(db);
             return custMangr.DisableCustomerById(id);
         }
 
@@ -92,12 +86,7 @@ namespace CRMApi.Controllers
         [HttpPut("enable/{id}")]
         public bool EnableCustomerById(int id)
         {
-            using CrmDbContext db = new CrmDbContext();
-            CustomerManagement custMangr = new CustomerManagement(db);
             return custMangr.EnableCustomerById(id);
-        }
-
-        //-----------------------------------------------------------------//
-        
+        }    
     }
 }
