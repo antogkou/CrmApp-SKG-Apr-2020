@@ -118,24 +118,5 @@ namespace CrmApp.Services
             return false;
         }
 
-        public Customer GetCustomer(int id)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Customer PostCustomer(CustomerOption custOpt)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Customer PutCustomer(int id, CustomerOption custOpt)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public bool HardDeleteCustomer(int id)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

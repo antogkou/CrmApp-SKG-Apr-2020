@@ -31,9 +31,23 @@ namespace CRMApi
             services.AddTransient<CrmDbContext, CrmDbContext>();
             services.AddTransient<ICustomerManager, CustomerManagement>();
             services.AddTransient<IProductManager, ProductManagement>();
-            //services.AddTransient<IBasketManager, BasketManagement>();
-            services.AddControllers();
+            services.AddTransient<IBasketManager, BasketManagement>();
+            //services.AddControllers();
 
+            //The Microsoft.AspNetCore.Mvc.NewtonsoftJson package is needed
+
+            services.AddControllers().AddNewtonsoftJson(options =>
+           options.SerializerSettings.ReferenceLoopHandling =
+           Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    );
+            });
 
         }
 
@@ -49,7 +63,7 @@ namespace CRMApi
 
             app.UseAuthorization();
 
-            app.UseCors();
+            app.UseCors("CorsPolicy");
 
 
             app.UseEndpoints(endpoints =>

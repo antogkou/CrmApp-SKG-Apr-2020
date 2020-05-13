@@ -7,17 +7,13 @@ namespace CrmApp.Services
 {
     public interface ICustomerManager
     {
-        List<Customer> GetAllCustomers();
+        Customer CreateCustomer(CustomerOption custOption);
+        Customer FindCustomerById(int customerId);
         List<Customer> FindCustomerByName(CustomerOption custOption);
-        Customer GetCustomer(int id);
-        Customer PostCustomer(CustomerOption custOpt);
-        Customer PutCustomer(int id, CustomerOption custOpt);
-        bool HardDeleteCustomer(int id);
+        Customer Update(CustomerOption custOption, int customerId);
+        List<Customer> GetAllCustomers();
         bool DisableCustomerById(int id);
         bool EnableCustomerById(int id);
-        Customer FindCustomerById(int id);
-        Customer CreateCustomer(CustomerOption custOpt);
-        Customer Update(CustomerOption custOpt, int id);
         bool HardDeleteCustomerById(int id);
     }
 }

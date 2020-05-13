@@ -3,10 +3,11 @@ using CrmApp.Options;
 using CrmApp.Repository;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace CrmApp.Services
 {
-    public class BasketManagement
+    public class BasketManagement : IBasketManager
     {
 
         private CrmDbContext db = new CrmDbContext();
@@ -75,6 +76,5 @@ namespace CrmApp.Services
             return false;
         }
 
-        
     }
 }

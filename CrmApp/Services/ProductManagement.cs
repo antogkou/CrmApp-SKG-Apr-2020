@@ -73,24 +73,5 @@ namespace CrmApp.Services
                 .ToList();
         }
 
-        public Product GetProduct(int id)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Product PostProduct(ProductOption prodOpt)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Product PutProduct(int id, ProductOption custOpt)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public bool HardDeleteProduct(int id)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

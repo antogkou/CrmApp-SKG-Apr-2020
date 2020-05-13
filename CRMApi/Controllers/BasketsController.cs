@@ -20,10 +20,11 @@ namespace CRMApi.Controllers
 
 
         private readonly ILogger<BasketsController> _logger;
-
-        public BasketsController(ILogger<BasketsController> logger)
+        private readonly IBasketManager baskMangr;
+        public BasketsController(ILogger<BasketsController> logger, IBasketManager _baskMangr)
         {
             _logger = logger;
+            baskMangr = _baskMangr;
         }
 
         //starting endpoint
@@ -33,51 +34,39 @@ namespace CRMApi.Controllers
             return "Welcome to our baskets";
         }
 
-        //GET CUSTOMER BY /ID
-        //[HttpGet("{id}")]
-        //public List<Basket> GetBasket(int b_id)
+        ////GET CUSTOMER's Basket BY /ID
+        //[HttpGet("{basket_id}/{id}")]
+        //public Customer GetCustomer(int basketID, int customerId)
         //{
         //    using CrmDbContext db = new CrmDbContext();
-        //    BasketManagement basktMangr = new BasketManagement(db);
-        //    return basktMangr.FindCustomerBaskets(b_id);
+        //    CustomerManagement custMangr = new CustomerManagement(db);
+        //    return custMangr.FindCustomerById(customerId);
         //}
 
-        ////GET ALL BASKETS
-        //[HttpGet("all")]
-        //public List<Basket> GetAllBaskets()
-        //{
-        //    using CrmDbContext db = new CrmDbContext();
-        //    BasketManagement bsktMangr = new BasketManagement(db);
-        //    return bsktMangr.GetAllBaskets();
-        //db.Customers.ToList();
 
-        //POST    /basket/customer/{id}
-
-        //[HttpPost("create/{id}")]
-        //public Basket CreateBasket(BasketOption bskprodOpt)
-        //{
-        //    using CrmDbContext db = new CrmDbContext();
-        //    BasketManagement bsktMngr = new BasketManagement(db);
-        //    return bsktMngr.CreateBasket(bskprodOpt);
-        //}
-
-        //GET CUSTOMER's Basket BY /ID
-        [HttpGet("{basket_id}/{id}")]
-        public Customer GetCustomer(int cust_id)
+        //POST   
+        [HttpPost("{customerId}/basket")]
+        public Basket CreateBasket(int customerId)
         {
-            using CrmDbContext db = new CrmDbContext();
-            CustomerManagement custMangr = new CustomerManagement(db);
-            return custMangr.FindCustomerById(cust_id);
+            BasketOption bskOption = new BasketOption
+            {
+                CustomerId = customerId
+            };
+
+            return baskMangr.CreateBasket(bskOption);
         }
 
-       
-        //POST   
-        [HttpPost("basket/{basketId}/product//{productId}")]
+        //POST
+        [HttpPost("basket/{basketId}/product/{productId}")]
         public BasketProduct AddToBasket(int basketId, int productId)
         {
             BasketProductOption bskProd = new BasketProductOption
+            {
+                BasketId = basketId,
+                ProductId = productId
+            };
 
-           
+            return baskMangr.AddProduct(bskProd);
         }
     }
 }
