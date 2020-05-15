@@ -13,17 +13,25 @@ namespace CrmApp.Repository
         public DbSet<Basket> Baskets { get; set; }
         public DbSet<BasketProduct> BasketProducts { get; set; }
 
-        private readonly string connectionString =
+        public readonly static string connectionString =
              "Server=localhost; " +
             "Database=sql1; " +
             "User Id=sa; " +
             "Password=admin!@#123;";
 
-        protected override void OnConfiguring(
-           DbContextOptionsBuilder optionsBuilder)
+
+        public CrmDbContext(DbContextOptions<CrmDbContext> options)
+               : base(options)
+        { }
+
+        public CrmDbContext()
+        {
+        }
+
+        protected override void OnConfiguring
+           (DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(connectionString);
-
         }
 
     }

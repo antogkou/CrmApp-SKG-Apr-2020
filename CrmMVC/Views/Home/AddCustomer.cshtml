@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewData["Title"] = "AddCustomer";
+}
+
+
+<h1 align="center"> Εισαγωγή πελάτη</h1>
+
+<form>
+    <table align="center">
+        <tr><td>Όνομα	</td>  <td><input type="text" id="FirstName" name="FirstName">	</td>  </tr>
+        <tr><td>Επώνυμο	</td>  <td> <input type="text" id="LastName" name="LastName">	</td>  </tr>
+        <tr><td>Address	</td>  <td> <input type="text" id="Address" name="Address">	</td>  </tr>
+        <tr><td>Email	</td>  <td> <input type="text" id="Email" name="Email">	</td>  </tr>
+        <tr>
+            <td>
+                <input type="button" onclick="submitToServer()"
+                       value="Submit">
+    </table>
+
+</form>
+
+<div id="responseDiv">   </div>

@@ -13,6 +13,6 @@ namespace CrmApp.Services
         Basket FindBasketById(int basketId);
         List<Basket> FindCustomerBaskets(int custId);
         bool DeleteProduct(BasketProductOption bskProdOpt);
-
+        List<int> FindCustomerBasketProducts(int basketId);
     }
 }

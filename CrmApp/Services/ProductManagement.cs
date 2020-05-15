@@ -73,5 +73,9 @@ namespace CrmApp.Services
                 .ToList();
         }
 
+        public List<Product> GetAll()
+        {
+            return db.Products.ToList();
+        }
     }
 }

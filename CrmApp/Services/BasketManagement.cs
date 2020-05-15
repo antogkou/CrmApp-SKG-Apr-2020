@@ -4,6 +4,7 @@ using CrmApp.Repository;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Metadata.Ecma335;
 
 namespace CrmApp.Services
 {
@@ -11,6 +12,8 @@ namespace CrmApp.Services
     {
 
         private CrmDbContext db = new CrmDbContext();
+        private List<int> basketProductList;
+
         public BasketManagement(CrmDbContext _db)
         {
             db = _db;
@@ -22,11 +25,11 @@ namespace CrmApp.Services
             CustomerManagement castMangr = new CustomerManagement(db);
             Basket basket = new Basket
             {
-               Customer=castMangr.FindCustomerById(baskOption.CustomerId)
-                
+                Customer = castMangr.FindCustomerById(baskOption.CustomerId)
+
             };
 
-          //  db.Database.EnsureCreated();
+            //  db.Database.EnsureCreated();
             db.Baskets.Add(basket);
             db.SaveChanges();
             return basket;
@@ -60,6 +63,19 @@ namespace CrmApp.Services
                 .Where(basket => basket.Customer.Id == custId)
                 .ToList();
         }
+
+        //FindBasketProducts
+        public List<int> FindCustomerBasketProducts(int basketId)
+        {
+            List<int> basketProductList =
+            (from bp in db.BasketProducts
+             where bp.Basket.Id == basketId
+             select bp.Product.Id)
+             .ToList();
+
+            return basketProductList;
+        }
+
 
         //DeleteProductFromBasket
         public bool DeleteProduct(BasketProductOption bskProdOpt)

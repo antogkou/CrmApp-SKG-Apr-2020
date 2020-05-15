@@ -12,5 +12,6 @@ namespace CrmApp.Services
         Product Update(ProductOption prodOption, int productId);
         bool HardDeleteProductById(int id);
         List<Product> GetAllProducts();
+        List<Product> GetAll();
     }
 }

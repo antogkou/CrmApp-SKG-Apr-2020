@@ -10,7 +10,7 @@ using System.Net;
 
 namespace CRMApi.Controllers
 {
-   
+
     [Route("[controller]")]
     [ApiController]
     public class BasketsController : ControllerBase
@@ -33,15 +33,6 @@ namespace CRMApi.Controllers
         {
             return "Welcome to our baskets";
         }
-
-        ////GET CUSTOMER's Basket BY /ID
-        //[HttpGet("{basket_id}/{id}")]
-        //public Customer GetCustomer(int basketID, int customerId)
-        //{
-        //    using CrmDbContext db = new CrmDbContext();
-        //    CustomerManagement custMangr = new CustomerManagement(db);
-        //    return custMangr.FindCustomerById(customerId);
-        //}
 
 
         //POST   
@@ -67,6 +58,18 @@ namespace CRMApi.Controllers
             };
 
             return baskMangr.AddProduct(bskProd);
+        }
+
+        [HttpGet("basket/{basketId}")]
+        public List<Basket> GetCustomerBaskets(int basketId)
+        {
+            return baskMangr.FindCustomerBaskets(basketId);
+        }
+
+        [HttpGet("basketproducts/{basketId}")]
+        public List<int> GetAllBasketProducts(int basketId)
+        {
+            return baskMangr.FindCustomerBasketProducts(basketId);
         }
     }
 }

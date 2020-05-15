@@ -37,9 +37,7 @@ namespace CRMApi.Controllers
         [HttpGet("all")]
         public List<Product> GetAllProducts()
         {
-            using CrmDbContext db = new CrmDbContext();
-            ProductManagement prodMngr = new ProductManagement(db);
-            return prodMngr.GetAllProducts();
+            return prodMangr.GetAllProducts();
             //db.Customers.ToList();
         }
 
@@ -47,18 +45,14 @@ namespace CRMApi.Controllers
         [HttpGet("{id}")]
         public Product GetProduct(int id)
         {
-            using CrmDbContext db = new CrmDbContext();
-            ProductManagement prodMngr = new ProductManagement(db);
-            return prodMngr.FindProductById(id);
+            return prodMangr.FindProductById(id);
         }
 
         //POST PRODUCT (new)
         [HttpPost("")]
         public Product PostProduct(ProductOption prodOpt)
         {
-            using CrmDbContext db = new CrmDbContext();
-            ProductManagement prodMngr = new ProductManagement(db);
-            return prodMngr.CreateProduct(prodOpt);
+            return prodMangr.CreateProduct(prodOpt);
 
         }
 
@@ -66,18 +60,14 @@ namespace CRMApi.Controllers
         [HttpPut("{id}")]
         public Product PutProduct(int id, ProductOption custOpt)
         {
-            using CrmDbContext db = new CrmDbContext();
-            ProductManagement prodMngr = new ProductManagement(db);
-            return prodMngr.Update(custOpt, id);
+            return prodMangr.Update(custOpt, id);
         }
 
         //DELETE PRODUCT
         [HttpDelete("{id}")]
         public bool HardDeleteProduct(int id)
         {
-            using CrmDbContext db = new CrmDbContext();
-            ProductManagement prodMngr = new ProductManagement(db);
-            return prodMngr.HardDeleteProductById(id);
+            return prodMangr.HardDeleteProductById(id);
         }
     }
 }
