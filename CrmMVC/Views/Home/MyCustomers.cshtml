@@ -1,0 +1,19 @@
+﻿@model CrmMVC.Models.CustomerModel
+@{
+    ViewData["Title"] = "MyCustomers";
+}
+
+<h1>MyCustomers</h1>
+
+<ul>
+    @{
+        foreach (var customer in Model.Customers)
+        {
+            <li>
+                @customer.FirstName  @customer.LastName  @customer.Email 
+            </li>
+        }
+
+    }
+
+</ul>

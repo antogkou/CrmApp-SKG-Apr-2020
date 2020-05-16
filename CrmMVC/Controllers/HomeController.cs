@@ -7,24 +7,36 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using CrmMVC.Models;
 using CrmApp.Services;
+using CrmApp.Repository;
 
 namespace CrmMVC.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private ICustomerManager custMangr;
+        private readonly CrmDbContext _db;
+        private ICustomerManager _custMangr;
 
-        public HomeController(ILogger<HomeController> logger, ICustomerManager _custMangr)
+        public HomeController(ILogger<HomeController> logger, ICustomerManager custMangr, CrmDbContext db)
         {
             _logger = logger;
-            custMangr = _custMangr;
+            _custMangr = custMangr;
+            _db = db;
         }
 
 
         public IActionResult Index()
         {
             return View();
+        }
+
+        public IActionResult MyCustomers()
+        {
+            CustomerModel mycustomers = new CustomerModel
+            {
+                Customers = _custMangr.GetAllCustomers()
+            };
+            return View(mycustomers);
         }
 
         public IActionResult Privacy()
